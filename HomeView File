@@ -1,0 +1,22 @@
+import SwiftUI
+
+struct HomeView: View {
+    @EnvironmentObject var recipesVM: RecipesViewModel
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                RecipeList(recipes: recipesVM.recipes)
+            }
+            .navigationTitle("My Recipes")
+        }
+        .navigationViewStyle(.stack)
+    }
+} // This is the body of the HomeView. It creates a NavigationView with a ScrollView as the root view. The ScrollView contains a RecipeList with the recipes from the RecipesViewModel. The navigation title is set to "My Recipes". The navigation view style is set to stack.
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+            .environmentObject(RecipesViewModel())
+    }
+} // This is a preview provider for the HomeView. It creates a preview of the HomeView with a RecipesViewModel as the environment object.
