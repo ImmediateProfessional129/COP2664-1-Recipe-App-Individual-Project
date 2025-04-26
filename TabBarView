@@ -1,0 +1,46 @@
+//
+// TabBar.swift
+// RecipeSaver
+//
+//  Created by Marcello Gonzalez on 4/14/25.
+//
+
+import SwiftUI
+
+struct TabBar: View {
+    var body: some View {
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                } // This is the default tab when the app launches and it will be the first tab that the user sees.
+            
+            CategoriesView()
+                .tabItem {
+                    Label("Categories", systemImage: "square.fill.text.grid.1x2")
+                } // Second tab that the user will see.
+            
+            NewRecipeView()
+                .tabItem {
+                    Label("New", systemImage: "plus")
+                } // Third tab that the user will see.
+            
+            FavoritesView()
+                .tabItem {
+                    Label("Favorites", systemImage: "heart")
+                } // Fourth tab that the user will see.
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                } // Fifth tab that the user will see.
+        }
+    }
+} // This is the tab bar that will be displayed at the bottom of the screen.
+
+struct TabBar_Previews: PreviewProvider {
+    static var previews: some View {
+        TabBar()
+            .environmentObject(RecipesViewModel())
+    }
+} // This is the preview provider that will be used to preview the tab bar.
