@@ -1,0 +1,106 @@
+import SwiftUI
+
+struct AddRecipeView: View {
+    @EnvironmentObject private var recipesVM: RecipesViewModel
+
+    // // These state variables will hold the input data from the user for the new recipe.
+    @State private var name: String = ""
+    @State private var selectedCategory: Category = Category.mainCourse
+    @State private var description: String = ""
+    @State private var ingredients: String = ""
+    @State private var directions: String = ""
+    @State private var selectedRecipe: Recipe? = nil
+
+    @Environment(\.dismiss) var dismiss // This will be used to dismiss the view when the user is done.
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(header: Text("Name")) {
+                    TextField("Recipe Name", text: $name)
+                } // This section will allow the user to enter the name of the new recipe.
+
+                Section(header: Text("Category")) {
+                    Picker("Category", selection: $selectedCategory) {
+                        ForEach(Category.allCases, id: \.self) { category in
+                            Text(category.rawValue)
+                                .tag(category)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                } // This section will allow the user to select the category of the new recipe.
+
+                Section(header: Text("Description")) {
+                    TextEditor(text: $description)
+                }
+
+                Section(header: Text("Ingredients")) {
+                    TextEditor(text: $ingredients)
+                }
+
+                Section(header: Text("Directions")) {
+                    TextEditor(text: $directions)
+                }
+            } // This form will contain all the input fields for the new recipe.
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Label("Cancel", systemImage: "xmark")
+                            .labelStyle(.iconOnly)
+                    }
+                } // This toolbar item will allow the user to cancel the creation of the new recipe.
+
+
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        let recipe = saveRecipe()
+                        selectedRecipe = recipe
+                    } label: {
+                        Label("Done", systemImage: "checkmark")
+                            .labelStyle(.iconOnly)
+                    }
+                    .disabled(name.isEmpty)
+                }
+            }
+            .navigationTitle("New Recipe")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(item: $selectedRecipe) { recipe in
+                RecipeView(recipe)
+                    .navigationBarBackButtonHidden(true)
+            }
+        }
+    }
+} // This view will allow the user to create a new recipe and add it to the list of recipes.
+
+struct AddRecipeView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddRecipeView()
+            .environmentObject(RecipesViewModel())
+    }
+} // This preview will allow the user to see what the view looks like in the SwiftUI preview canvas.
+
+extension AddRecipeView {
+    private func saveRecipe() -> Recipe {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let datePublished = dateFormatter.string(from: now) // This will format the current date and time as a string in the format "yyyy-MM-dd".
+
+        let recipe = Recipe(
+            id: UUID(),
+            name: name,
+            image: "",
+            description: description,
+            ingredients: ingredients,
+            directions: directions,
+            category: selectedCategory.rawValue,
+            datePublished: datePublished,
+            url: ""
+        ) // This will create a new Recipe object with the input data from the user.
+
+        recipesVM.addRecipe(recipe)
+        return recipe
+    }
+} // This function will create a new Recipe object with the input data from the user and add it to the list of recipes.
