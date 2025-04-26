@@ -1,0 +1,25 @@
+import SwiftUI
+
+struct CategoriesView: View {
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(Category.allCases, id: \.self) { category in
+                    NavigationLink {
+                        CategoryView(category: category)
+                    } label: {
+                        Text(category.rawValue + "s")
+                    }
+                }
+            }
+            .navigationTitle(Text("Categories"))
+        }
+        .navigationViewStyle(.stack)
+    }
+} // This whole struct is a SwiftUI view that displays a list of categories. It uses a NavigationView to display the list, and a ForEach loop to iterate over the categories. For each category, it displays a NavigationLink that navigates to a CategoryView when tapped. The CategoryView is passed the category as a parameter. The navigationTitle modifier is used to set the title of the navigation view to "Categories". The navigationViewStyle modifier is used to set the style of the navigation view to stack.
+
+struct CategoriesView_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoriesView()
+    }
+} // This structure is a preview provider for the CategoriesView. It provides a preview of the CategoriesView in the Xcode canvas.
