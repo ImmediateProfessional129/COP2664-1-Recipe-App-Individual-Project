@@ -1,0 +1,25 @@
+import SwiftUI
+
+struct CategoryView: View {
+    @EnvironmentObject var recipesVM: RecipesViewModel
+    
+    var category: Category
+    
+    var recipes: [Recipe] {
+        return recipesVM.recipes.filter{ $0.category == category.rawValue }
+    } // This variable is used to filter the recipes by category. It will display a category of recipes that the user has created and selected.
+    
+    var body: some View {
+        ScrollView {
+            RecipeList(recipes: recipes)
+        }
+        .navigationTitle(category.rawValue + "s")
+    }
+} // This variable is used to make the app scroll up and down when the user is viewing the recipes.
+
+struct CategoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoryView(category: Category.appetizer)
+            .environmentObject(RecipesViewModel())
+    }
+} // This is the structure that will be used to display the category view. It will display a list of recipes that belong to the category that is passed in.
