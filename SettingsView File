@@ -1,0 +1,17 @@
+import SwiftUI // This line imports the SwiftUI framework, which is used to build the user interface for the app.
+
+struct SettingsView: View {
+    var body: some View {
+        NavigationView {
+            Text("v1.0.0")
+                .navigationTitle(Text("Settings"))
+        }
+        .navigationViewStyle(.stack)
+    }
+} // This structure is the main view for the settings screen. It contains a NavigationView with a Text view displaying the app version. The navigationTitle modifier is used to set the title of the navigation bar. The navigationViewStyle modifier is used to set the style of the navigation view to stack.
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+    }
+} // This structure is used to preview the SettingsView. It creates an instance of SettingsView and displays it in the preview canvas.
