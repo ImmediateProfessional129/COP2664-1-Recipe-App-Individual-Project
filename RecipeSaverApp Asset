@@ -1,0 +1,13 @@
+import SwiftUI
+
+@main
+struct RecipeSaverApp: App {
+    @StateObject var recipesViewModel = RecipesViewModel() // This is the ViewModel that will be shared across the app using the environmentObject modifier in the ContentView.
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(recipesViewModel)
+        }
+    }
+} // This is the entry point of the app. It creates a window group and sets the content view as the root view. The environmentObject modifier is used to share the recipesViewModel across the app.
