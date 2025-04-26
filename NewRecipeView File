@@ -1,0 +1,24 @@
+import SwiftUI
+
+struct NewRecipeView: View {
+    @State private var showAddRecipe = false
+    
+    var body: some View {
+        NavigationView {
+            Button("Add recipe manually") {
+                showAddRecipe = true
+            }
+            .navigationTitle("New Recipe")
+        }
+        .navigationViewStyle(.stack)
+        .sheet(isPresented: $showAddRecipe) {
+            AddRecipeView()
+        }
+    }
+} // This variable is used to show the AddRecipeView when the button is pressed. It is initialized to false, so the AddRecipeView is not shown when the NewRecipeView is first displayed.
+
+struct NewRecipeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewRecipeView()
+    }
+} // This struct is used to preview the NewRecipeView in the canvas contructor.
