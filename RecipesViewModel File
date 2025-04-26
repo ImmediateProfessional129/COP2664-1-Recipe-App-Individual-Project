@@ -1,0 +1,13 @@
+import Foundation
+
+class RecipesViewModel: ObservableObject {
+    @Published private(set) var recipes: [Recipe] = [] // This is a published property that will notify any observers when its value changes. It is private(set) because we only want to allow changes to this property from within the RecipesViewModel class.
+    
+    init() {
+        recipes = Recipe.all
+    } // This is the initializer for the RecipesViewModel class. It initializes the recipes array with all the recipes from the Recipe class.
+    
+    func addRecipe(_ recipe: Recipe) {
+        recipes.append(recipe)
+    }
+} // This is a method that allows us to add a new recipe to the recipes array. It takes a Recipe object as a parameter and appends it to the recipes array.
