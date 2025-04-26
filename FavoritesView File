@@ -1,0 +1,18 @@
+import SwiftUI
+
+struct FavoritesView: View {
+    var body: some View {
+        NavigationView {
+            Text("You haven't saved any recipe to your favorite yet!")
+                .padding()
+                .navigationTitle(Text("Favorites"))
+        }
+        .navigationViewStyle(.stack)
+    }
+} // This structure is used to create a navigation view that contains a text view. The text view displays a message indicating that the user hasn't saved any recipes to their favorites yet. The navigation title is set to "Favorites"
+
+struct FavoritesView_Previews: PreviewProvider {
+    static var previews: some View {
+        FavoritesView()
+    }
+} // This structure is used to create a preview of the FavoritesView structure. The preview is displayed in the SwiftUI preview canvas.
