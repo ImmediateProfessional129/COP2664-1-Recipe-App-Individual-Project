@@ -1,0 +1,36 @@
+import SwiftUI
+
+struct RecipeList: View {
+    var recipes: [Recipe]
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text("\(recipes.count) \(recipes.count > 1 ? "recipes" : "recipe")")
+                    .font(.headline)
+                    .fontWeight(.medium)
+                .opacity(0.7) // This is the Text view that displays the number of recipes and the word "recipes" or "recipe" depending on whether there is more than one recipe.
+                
+                Spacer()
+            } // This is the HStack that contains the text and the Spacer view that pushes the text to the left side of the screen.
+            
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 15)], spacing: 15) {
+                ForEach(recipes) { recipe in
+                    NavigationLink(destination: RecipeView(recipe)) {
+                        RecipeCard(recipe: recipe)
+                    }
+                }
+            }
+            .padding(.top)
+        }
+        .padding(.horizontal)
+    }
+} // This is the RecipeList view that contains a VStack with an HStack that contains a Text view and a Spacer view. The VStack also contains a LazyVGrid that contains a ForEach loop that iterates over the recipes array and creates a NavigationLink for each recipe that contains a RecipeCard view.
+
+struct RecipeList_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView {
+            RecipeList(recipes: Recipe.all)
+        }
+    }
+} // This is the RecipeList_Previews struct that conforms to the PreviewProvider protocol. It provides a preview of the RecipeList view with a ScrollView that contains a RecipeList view with the recipes array set to Recipe.all.
