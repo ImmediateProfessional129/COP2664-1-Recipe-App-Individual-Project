@@ -1,0 +1,99 @@
+import Foundation
+
+enum Category: String, CaseIterable, Identifiable {
+    var id: String { self.rawValue }
+    case breakfast = "Breakfast"
+    case soup = "Soup"
+    case salad = "Salad"
+    case appetizer = "Appetizer"
+    case mainCourse = "Main Course"
+    case side = "Side"
+    case dessert = "Dessert"
+    case snack = "Snack"
+    case drink = "Drink"
+}
+
+struct Recipe: Identifiable, Hashable {
+    let id: UUID
+    let name: String
+    let image: String
+    let description: String
+    let ingredients: String
+    let directions: String
+    let category: Category.RawValue
+    let datePublished: String
+    let url: String
+}
+
+// This extension adds a static property to the Recipe struct that returns an array of Recipe objects. This array is used to populate the RecipesView with data.
+extension Recipe {
+    static let all: [Recipe] = [
+        Recipe(
+            id: UUID(),
+            name: "Slow Cooker Chicken and Gravy",
+            image: "https://www.allrecipes.com/thmb/VjPlHim1LJc6GqwBwWYN_h5UY8g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/116933810-Slow-Cooker-Chicken-and-Gravy-Peyton-Beckwith-AR_CR_-4x3-93ea1c07646e44dabf65a44911fbc954.jpg",
+            description: "A classic comfort food! Tender chicken breasts slow-cooked in a rich, savory gravy made with mushrooms, onions, and flour.",
+            ingredients: "1 (10 1/2 ounce) can cream of chicken soup, 2 packets chicken gravy mix, 1/2 cup chicken broth (optional), 1/2 teaspoon salt, 1/2 teaspoon freshly ground black pepper, 3 to 4, boneless chicken breasts.",
+            directions: "1. In a 6-quart slow cooker, whisk together canned soup, gravy mix, chicken broth, salt, and pepper. Add chicken, cover and cook on low for 4 hours. 2. Before serving carefully, shred chicken using a hand mixer.",
+            category: Category.mainCourse.rawValue,
+            datePublished: "2025-03-25",
+            url: "https://www.allrecipes.com/recipe/232066/slow-cooker-chicken-and-gravy/"
+            ),
+        Recipe(
+            id: UUID(),
+            name: "Easy Rotisserie Chicken Enchiladas",
+            image: "https://www.allrecipes.com/thmb/DiYz5f_ODJDiHbBkPq6MCTOpyaI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11706233_Easy-Rotisserie-Chicken-Enchiladas_TheDailyGourmet_4x3-615a25a8466a46d988d12a1a63abace9.jpg",
+            description: "Rotisserie chicken enchiladas are a tasty twist on a classic comfort food. They're easy to make and always a hit with family and friends.",
+            ingredients: "1 1/2 tablespoons canola oil, 6 corn tortillas, 1 can red enchilada sauce, divided, 1 cip shredded rotisserie chicken, 2 teaspoons dry enchilada seasoning, 1 cup shredded Monterey Jack cheese, divided",
+            directions: "1. Preheat the oven to 375 degrees F (190 degrees C. Place a wire rack on a baking sheet. 2. Heat oil in a heavy skillet. Quickly fry tortillas in the hot oil, about 5 seconds per side. Remove torillas to the wire rack to drain. Dab excess oil with a paper towel. 3. Pour a thin layer of enchilada sauce into the bottom of a casserole dish. 4. Place shredded chicken in a bowl, sprinkle enchilada seasoning over chicken and toss to combine. Place 3 tablespoons chicken along center of each enchilada. Sprinkle with 1 1/2 tablespoons cheese. Roll up to form enchiladas. Place enchiladas seam side down in the casserole dish. Top with remaining enchilada sauce and sprinkle evenly with cheese. Cover with aluminum foil. 5. Bake in the preheated for 25 minutes. Turn on the oven's broiler, remove foil from enchiladas, and broil until cheese is melted and golden, about 5 minutes.",
+            category: Category.appetizer.rawValue,
+            datePublished: "2025-04-3",
+            url:
+                "https://www.allrecipes.com/recipe/232066/rotisserie-chicken-enchiladas/"
+        ),
+        Recipe(
+        id: UUID(),
+        name: "Okonomiyaki-Inspired Crispy Rice",
+        image: "https://www.allrecipes.com/thmb/R00QzWpUWZNQowfaJoFbjwv9waM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8788921-Okonomiyaki-Crispy-Rice-3x4-210-1c0455b25fd54534988b142053a21fa5.jpg",
+        description: "This crispy rice recipe is a great way to add some flavor to your okonomiyaki meal. It's simple to make and can be customized to your liking.",
+        ingredients: "4 thick-cut bacon slices, chopped, 1 1/2 cups quick-cooking white rice (such as Minute), 1/2 teaspoon kosher salt, 2 cups tap water, 2 medium scallions, 4 cups shredded green cabbage, 3 cloves garlic, minced, 1 tablespoon minced fresh ginger, 1/2 cup Kewpie mayonnaise, divided, 2 1/2 tablespoons soy sauce, divided, 2 tablespoons canola oil, 1/4 cup ketchup, 1 1/2 teaspoons Worcestershire sauce, 1/2 teaspoon toasted sesame seeds, Aonori (seaweed flakes) and lightly crumbled bonito flakes (katsuobushi) (optional)",
+        directions: "1. Gather all ingredients. 2. Preheat oven to 400 degrees F (200 degrees C) with rack in bottom third position. Heat bacon in a medium cast-iron skillet over medium and cook, stirring occasionally, until crisp, about 10 minutes. Using a slotted spoon, transfer bacon to a paper towel-lined plate. Reserve drippings in a small bowl. 3. While bacon cooks, stir together rice, salt, and water in an 8-cup microwave-safe container. Microwave on HIGH until al dente, about 4 minutes. Drain to eliminate excess water, if needed, and transfer to a large bowl. 4. Thinly slice scallions, keeping dark and light green parts separate. Return 1 tablespoon of bacon drippings to the skillet over medium heat and add light green parts of scallions, cabbage, garlic, and ginger; cook, stirring often, until softened and fragrant, 3 to 4 minutes. Remove from heat and transfer to bowl with rice. 5. Add half (about 1/4 cup) of the reserved bacon, 1/4 cup mayonnaise, and 2 tablespoons soy sauce to bowl with rice and cabbage; toss until fully combined. 6. Heat oil and remaining 2 tablespoons bacon drippings in a skillet over medium heat until just sizzling. Add rice mixture to the hot skillet and use a spoon to flatten and cover the bottom of the skillet. Use end of a wooden spoon handle to gently poke 5 to 6 holes in the rice, going all the way to bottom of skillet. This will allow steam to escape and a crust to form on the bottom. 7. Continue cooking over medium heat until rice sizzles and begins to brown on edges, about 4 minutes. Transfer to preheated oven and cook on the bottom third rack until bottom of rice is nice and crisp, 30 to 35 minutes. 8. While rice bakes, whisk together ketchup, Worcestershire sauce, and remaining 1/2 tablespoons soy sauce in a small bowl; set Okonomiyaki sauce aside until ready to use. 9. Remove skillet from oven. Drizzle evenly with some of the ketchup mixture and remaining 1/4 cup kewpie mayonnaise. Sprinkle with sesame seeds, dark green parts of scallions, reserved bacon, aonori, and bonito flakes, if using. Serve immediately.",
+        category: Category.side.rawValue,
+        datePublished: "2025-03-11",
+        url: "https://www.allrecipes.com/okonomiyaki-inspired-crispy-rice-recipe-8788921"
+        ),
+        Recipe(
+        id: UUID(),
+        name: "Philly Cheesesteak",
+        image: "https://www.allrecipes.com/thmb/YnnLZDECdQljnJb4o9cDy0c8evk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/AR-36621-philly-steak-sandwich-DDMFS-4x3-0375c25e8e554626a87131ee6f063655.jpg",
+        description: "This classic Philly cheesesteak recipe is sure to please! Tenderly sliced roast beef sautéed with sautéed onions and melted provolone cheese make this cheesesteak a favorite among all ages. Serve this hearty cheesesteak on its own, with baked beans, or roll it up in a warm tortilla for a tasty twist!",
+        ingredients: "½ teaspoon salt, ½ teaspoon black pepper, ½ teaspoon paprika, ½ teaspoon chili powder, ½ teaspoon onion powder, ½ teaspoon garlic powder, ½ teaspoon dried thyme, ½ teaspoon dried marjoram, ½ teaspoon dried basil, 1 pound beef sirloin, cut into thin 2 inch strips, 3 tablespoons vegetable oil, 1 onion, sliced, 1 green bell pepper, julienned, 3 ounces Swiss cheese, thinly sliced, 4 hoagie rolls, split lengthwise",
+        directions: "1. Gather all ingrdients. 2. Mix salt, pepper, paprika, chili powder, onion powder, garlic powder, thyme, marjoram, and basil together in a small bowl. 3. Place steak in a large bowl; sprinkle seasoning mixture over top and stir to coat. 4. Heat 1/2 of the oil in a skillet over medium-high heat. Add steak; cook and stir to the desired doneness. Transfer cooked steak to a plate. 5. Heat the remaining oil in the skillet. Add onion and green pepper; cook and stir until tender and caramelized. 6. Preheat the oven on the broiler setting. Divide cooked beef between the bottoms of 4 rolls. 7. Layer with onion and green pepper. 8. Top with sliced cheese. Place on a cookie sheet. 9. Broil in the preheated oven until cheese is melted. 10. Cover with tops of rolls and serve.",
+        category: Category.appetizer.rawValue,
+        datePublished: "2024-07-25",
+        url: "https://www.allrecipes.com/recipe/36621/philly-steak-sandwich/"
+        ),
+        Recipe(
+        id: UUID(),
+        name:"Tomato Bisque",
+        image: "https://www.allrecipes.com/thmb/96xbtRbF_pLB7wz8o6P0E6BC8g4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/AR-234914-how-to-make-tomato-bisque-DDMFS-4x3-d92ed625f0174f248579b55ad274278d.jpg",
+        description: "A creamy, rich, and flavorful tomato soup that is sure to warm you up on a cold day.",
+        ingredients: "1 tablespoon olive oil, 1 cup diced onion, ½ cup diced celery, 1 pinch salt, 3 cloves garlic, chopped, 1 (32 ounce) container chicken broth, or more as needed, 1 (28 ounce) can crushed San Marzano tomatoes, ½ teaspoon paprika, 1 pinch freshly ground black pepper, or to taste, 1 pinch cayenne pepper, or to taste, 3 tablespoons uncooked jasmine rice, 1 teaspoon white sugar, or to taste, ½ cup heavy whipping cream, salt and freshly ground black pepper to taste, 2 tablespoons heavy whipping cream, divided, 2 tablespoons thinly sliced fresh basil leaves, divided",
+        directions: "1. Gather all ingredients. 2. Heat olive oil in a large pot over medium heat; cook and stir onion and celery with a pinch of salt until onion is translucent, 5 to 8 minutes. Stir in garlic and cook until fragrant, about 1 minute. Pour chicken broth and tomatoes into onion mixture. Bring to a simmer and season with paprika, black pepper, and cayenne pepper. 4. Turn heat to low and stir rice into soup; skim foam occasionally and simmer until rice and vegetables are very tender, 35 to 45 minutes. Add sugar. 5. Blend soup with an immersion blender in the pot until smooth. 6. Whisk 1/2 cup cream into soup and season with salt, black pepper, cayenne pepper, and sugar if needed. If soup is too thick, add more broth; if soup is too thin, cook, stirring often, until reduced and slightly thickened, about 10 minutes. 7. Ladle into warmed bowls; garnish each bowl with a drizzle of cream and top each with about 1 teaspoon chopped basil.",
+        category: Category.soup.rawValue,
+        datePublished: "2024-11-14",
+        url: "https://www.allrecipes.com/recipe/234914/how-to-make-tomato-bisque/"
+        ),
+        Recipe(
+        id: UUID(),
+        name: "Banana Cream Pie with Pudding",
+        image: "https://www.allrecipes.com/thmb/ihpm4J1Y7ggBWGJma1jb0htLOrQ=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/803814-banana-cream-pie-iii-LYNNINMA-4X3-5fe4267d47914a4b8152927cce275c46.jpg",
+        description: "This classic dessert is a delightful twist on the classic banana cream pie. It's creamy, rich, and moist, with a delightful banana flavor that's sure to impress your family and friends. Plus, the added bonus of a fluffy vanilla pudding filling makes this pie even more special.",
+        ingredients: "1. 1 (9 inch) baked crust pie, 2. 3 medium bananas, 3. 2 1/2 cups of cold milk, 4. 2 (3.5 ounces) packages of instant vanilla pudding mix, 5. 2 cups of frozen whipped topping, thawed, divided",
+        directions: " 1. Slice two bananas; arrange banana slices in a single layer to cover bottom of pie crust. 2. Pour cold milk into a medium bowl. Add pudding mix and whisk until thoroughly combined. Fold in 1/2 cup whipped topping; pour into crust over bananas. Refrigerate until firm, at least 3 hours. 3. When ready to serve, spread remaining whipped topping over pie. Slice remaining banana and arrange over topping.",
+        category: Category.dessert.rawValue,
+        datePublished: "2022-11-8",
+        url: "https://www.allrecipes.com/recipe/15603/banana-cream-pie-iii/"
+        ),
+        ]
+    }
